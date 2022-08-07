@@ -107,14 +107,10 @@ section .buttonLast a {
     font-weight: 500;
 }
 
-section .buttons a:first-child {
+section .buttons a:first-child,
+section .buttonLast a {
     /* background-color: #444; */
     background-color: black;
-    color: #fff;
-}
-
-section .buttonLast a {
-    background-color: rgb(25, 25, 25);
     color: #fff;
 }
 
@@ -125,8 +121,10 @@ section .buttons {
 }
 
 section .buttonLast {
-    text-align: center;
-    margin: 300px 525px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    width: 270px
 }
 
 @media (min-width: 768px) {
