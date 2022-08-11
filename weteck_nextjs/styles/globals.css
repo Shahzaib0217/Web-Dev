@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -17,6 +17,22 @@ a {
 
 * {
   box-sizing: border-box;
+} */
+body {
+  background-color: #020E18;
+  overflow-x: hidden;
+}
+
+* {
+  color: white;
+}
+
+.primary {
+  background-color: #002A4D;
+}
+
+.divcolor {
+  background-color: #00172A;
 }
 
 @media (prefers-color-scheme: dark) {
