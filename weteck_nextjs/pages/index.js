@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import Background from "../components/Background";
 import Nav from "../components/Nav";
 import Banner from '../components/Banner';
-import _Footer from '../components/Footer';
+// import _Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       <Background />
       <Nav />
       <Banner />
-      <_Footer />
+      {/* <_Footer /> */}
     </>
   )
 }

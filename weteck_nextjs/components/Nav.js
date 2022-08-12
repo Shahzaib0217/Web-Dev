@@ -18,9 +18,15 @@ function Nav() {
                             </Link>
                         </li >
                         <li className="mr-4">
+                            <a className={styles.text}>|</a>
+                        </li>
+                        <li className="mr-4">
                             <Link href="/portfolio">
                                 <a className={styles.text}>Portfolio</a>
                             </Link>
+                        </li>
+                        <li className="mr-4">
+                            <a className={styles.text}>|</a>
                         </li>
                         <li className="mr-4">
                             <Link href="/about">
