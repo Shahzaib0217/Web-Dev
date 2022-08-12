@@ -4,11 +4,7 @@ import Link from 'next/link'
 function Banner() {
     return (
         <>
-
-
             {/* first */}
-
-
             <div className='flex justify-spacebetween'>
                 {/* content  */}
                 <div >
@@ -35,8 +31,6 @@ function Banner() {
                     <Image src={require('/assets/Weteck Homepage Assets/Scenes01.svg')} />
                 </div>
             </div>
-
-
 
             {/* second */}
 
@@ -75,9 +69,6 @@ function Banner() {
                 </div>
             </div>
 
-
-
-
             {/* third */}
 
             <h6 className='pt-40 pl-36 pr-36 pb-0 text-xs   flex justify-center'>We are here to provide </h6>
@@ -110,10 +101,6 @@ function Banner() {
                     </div>
                 </div>
 
-
-
-
-
                 <div className='flex justify-center border-2 border-transparent primary rounded-2xl pt-2 pr-8 pl-8 pb-4'>
                     {/* image  */}
                     <div >
@@ -138,8 +125,6 @@ function Banner() {
                             that ensures the responsiveness<br></br>of the system...<a href='#'>Learn More</a></h6>
                     </div>
                 </div>
-
-
 
                 <div className='flex justify-center border-2 border-transparent primary rounded-2xl pt-2 pr-8 pl-8 pb-4'>
                     {/* image  */}
@@ -167,7 +152,6 @@ function Banner() {
                     </div>
                 </div>
             </div>
-
 
             {/* forth  */}
 
@@ -213,10 +197,7 @@ function Banner() {
                 </div>
             </div>
 
-
-
             {/* fifth  */}
-
             <h6 className='pt-40 pl-36 pr-36 pb-0 text-xs   flex justify-center'>Your trust gives us strength</h6>
             <h6 className='font-bold pt-0 pl-36 pr-36 pb-0 text-4xl   flex justify-center'>To Give Out Our Best</h6>
             <div className='pt-10 p-20'>
@@ -230,7 +211,6 @@ function Banner() {
                     <h1 className='text-xs whitespace-nowrap  pl-48 pt-2 '>Team Members</h1>
                     <h1 className='text-xs  whitespace-nowrap pl-96 pt-2'>Active Work</h1>
                 </div>
-
             </div>
         </>
     )
