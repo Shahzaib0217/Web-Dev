@@ -1,10 +1,12 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import Background from "../components/Background";
 import Nav from "../components/Nav";
-import Banner from '../components/Banner';
 import _Footer from '../components/Footer';
+import Content1 from '../components/Content1';
+import About2 from '../components/About2';
+import Services3 from '../components/Services3';
+import Portfolio4 from '../components/Portfolio4';
+import Stats5 from '../components/Stats5';
 
 export default function Home() {
   return (
@@ -16,8 +18,12 @@ export default function Home() {
       </Head>
       <Background />
       <Nav />
-      <Banner />
-      {/* <_Footer /> */}
+      <Content1 />
+      <About2 />
+      <Services3 />
+      <Portfolio4 />
+      <Stats5 />
+      <_Footer />
     </>
   )
 }
