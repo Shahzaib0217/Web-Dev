@@ -3,9 +3,7 @@ import Image from 'next/image'
 const Content1 = () => {
     return (
         <>
-            {/* first */}
             <div className='flex justify-spacebetween'>
-                {/* content  */}
                 <div >
                     <h6 className='font-bold pt-24 pl-24 text-xl'>We Believe in Providing The Best</h6>
                     <h6 className='font-bold pt-2 pl-24 text-5xl'>Customer Service</h6>
