@@ -4,8 +4,8 @@ const path = require('path')
 const app = express();
 const publicPath = path.join(__dirname, 'public')
 
-// .use enables us to us middleware
-// .static is a middleware, it loads static pages (with css, images and linked external files)
+// .use is a middleware
+// .static loads static pages (with css, images and linked external files)
 // path nodejs sy ho k ata ha is liye css directly apply nai hoti, so we use .static
 app.use(express.static(publicPath))
 
