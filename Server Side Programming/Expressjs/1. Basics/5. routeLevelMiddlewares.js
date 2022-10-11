@@ -10,12 +10,12 @@ app.get('', (_, res) => {
     res.send("Welcome to home page")
 })
 
-// adding middleware(routelevel)(1)
+// adding middleware(routelevel)(method 1)
 app.get('/user', reqFilter, (_, res) => {
     res.send("Welcome user")
 })
 
-// adding middleware (routelevel) using route (2)
+// adding middleware (routelevel) using route (method 2)
 route.get('/about', reqFilter, (_, res) => {
     res.send("Welcome to About")
 })
