@@ -52,25 +52,25 @@
 
     <div class="flexbox">
         <% data.forEach(function(user_data){ %>
-            <div class="card">
-                <div class="image">
-                    <!-- <img src="../public/images/shahzaib.png" alt="nnnnnn"> -->
-                    <img src="/images/<%= user_data.image %>" alt="<%= user_data.image %>"
-                        style="height: 100%; width: 100%;">
+            <% %>
+                <div class="card">
+                    <div class="image">
+                        <img src="/images/<%= user_data.image %>" alt="<%= user_data.image %>"
+                            style="height: 100%; width: 100%;">
+                    </div>
+                    <div class="user_details">
+                        <h4>
+                            <%= user_data.id %>
+                        </h4>
+                        <h4>
+                            <%= user_data.name %>
+                        </h4>
+                        <h4>
+                            <%= user_data.gender %>
+                        </h4>
+                    </div>
                 </div>
-                <div class="user_details">
-                    <h4>
-                        <%= user_data.id %>
-                    </h4>
-                    <h4>
-                        <%= user_data.name %>
-                    </h4>
-                    <h4>
-                        <%= user_data.gender %>
-                    </h4>
-                </div>
-            </div>
-            <% }); %>
+                <% }); %>
     </div>
 </body>
 
