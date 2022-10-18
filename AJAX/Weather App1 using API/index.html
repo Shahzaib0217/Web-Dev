@@ -13,14 +13,19 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body>
-    <label>City Name</label>
-    <input type="text" id="name">
-    <input type="button" value="Forcast" id="Forcast" onclick="getData()">
-
-    <div id="weatherInfo">
-        Weather info
-    </div>
+<body background="clouds.jpeg">
+    <h3 style="padding: 10px;">Shahzaib's Weather App</h3>
+    <center style="padding: 70px;">
+        <label for="Forcast" style="font-size:17px; font-weight:bold;"> Enter City
+            Name</label>
+        <input type="text" id="name">
+        <input type="button" value="Forcast" id="Forcast" class="btn btn-success" onclick="getData()">
+        <div class="card" style="width:400px; min-width: 400px; margin-top: 7px;">
+            <div id="weatherInfo">
+                Weather info
+            </div>
+        </div>
+    </center>
 </body>
 
 </html>
