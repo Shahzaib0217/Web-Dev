@@ -5,8 +5,13 @@ const app = express()
 const path = require('path')
 
 const publicPath = path.join(__dirname, 'public')
-app.use(express.static(publicPath))
-app.set('view engine', 'ejs')
+app.use(express.static(publicPath)) //static rendering (for accessing images, external linked files)
+app.set('view engine', 'ejs')  // set template engine ejs
+
+// for data decoding (encoded by post)
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 //--------------------------------------
 // Data base connection code
 const con = mysql.createConnection({
@@ -37,6 +42,108 @@ app.get("/", (req, res) => {
     })
 })
 //--------------------------------------
-// module.exports = router
+app.get("/input", (req, res,) => {
+    res.render('inputTable');
+});
+//--------------------------------------
+app.post("/inputData", (req, res) => {
 
-app.listen(3000);
+    var id = req.body.userid;
+    var name = req.body.name;
+    var gender = req.body.gender;
+    var image_path = req.body.image;
+
+    var query = `INSERT INTO users (id, name, gender, image) 
+    VALUES ("${id}", "${name}", "${gender}", "${image_path}")`;
+
+    con.query(query, (error, data) => {
+
+        if (error) {
+            throw error;
+        }
+        else {
+            // req.flash('success', 'User Data Inserted'); // popup message
+            /* For working of flashes
+            https://www.npmjs.com/package/connect-flash
+            https://stackoverflow.com/questions/27202075/expressjs-res-redirect-not-working-as-expected
+            */
+            res.redirect('/');
+        }
+
+    });
+
+});
+//--------------------------------------
+app.get('/delete/:id', function (request, response, next) {
+
+    var id = request.params.id;
+
+    var query = `
+	DELETE FROM users WHERE id = "${id}"
+	`;
+
+    con.query(query, function (error, data) {
+
+        if (error) {
+            throw error;
+        }
+        else {
+            response.redirect("/");
+        }
+
+    });
+
+});
+//--------------------------------------
+
+router.get('/edit/:id', function (request, response, next) {
+
+    var id = request.params.id;
+
+    var query = `SELECT * FROM sample_data WHERE id = "${id}"`;
+
+    database.query(query, function (error, data) {
+
+        response.render('sample_data', { sampleData: data[0] });
+
+    });
+
+});
+
+router.post('/edit/:id', function (request, response, next) {
+
+    var id = request.params.id;
+
+    var first_name = request.body.first_name;
+
+    var last_name = request.body.last_name;
+
+    var age = request.body.age;
+
+    var gender = request.body.gender;
+
+    var query = `
+	UPDATE sample_data 
+	SET first_name = "${first_name}", 
+	last_name = "${last_name}", 
+	age = "${age}", 
+	gender = "${gender}" 
+	WHERE id = "${id}"
+	`;
+
+    database.query(query, function (error, data) {
+
+        if (error) {
+            throw error;
+        }
+        else {
+            request.flash('success', 'Sample Data Updated');
+            response.redirect('/sample_data');
+        }
+
+    });
+
+});
+//--------------------------------------
+// module.exports = router;
+app.listen(3300);
