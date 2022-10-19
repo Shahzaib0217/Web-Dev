@@ -95,50 +95,40 @@ app.get('/delete/:id', function (request, response, next) {
 
 });
 //--------------------------------------
-
-router.get('/edit/:id', function (request, response, next) {
+app.get('/edit/:id', function (request, response, next) {
 
     var id = request.params.id;
 
-    var query = `SELECT * FROM sample_data WHERE id = "${id}"`;
+    var query = `SELECT * FROM users WHERE id = "${id}"`;
 
-    database.query(query, function (error, data) {
+    con.query(query, function (error, data) {
 
-        response.render('sample_data', { sampleData: data[0] });
-
+        response.render('updateTable', { userData: data[0] });
     });
 
 });
-
-router.post('/edit/:id', function (request, response, next) {
+//--------------------------------------
+app.post('/edited/:id', function (request, response, next) {
 
     var id = request.params.id;
-
-    var first_name = request.body.first_name;
-
-    var last_name = request.body.last_name;
-
-    var age = request.body.age;
-
+    var name = request.body.name;
     var gender = request.body.gender;
-
+    var image_path = request.body.image;
     var query = `
-	UPDATE sample_data 
-	SET first_name = "${first_name}", 
-	last_name = "${last_name}", 
-	age = "${age}", 
-	gender = "${gender}" 
+	UPDATE users 
+	SET name = "${name}",  
+	gender = "${gender}" ,
+    image = "${image_path}"
 	WHERE id = "${id}"
 	`;
 
-    database.query(query, function (error, data) {
+    con.query(query, function (error, data) {
 
         if (error) {
             throw error;
         }
         else {
-            request.flash('success', 'Sample Data Updated');
-            response.redirect('/sample_data');
+            response.redirect('/');
         }
 
     });
