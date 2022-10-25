@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Display Table</title>
+
+</head>
+
+<body style=" background-color: lightblue;">
+    <div class="container">
+        <h1 class="text-center mt-3 mb-3">
+            Users Detail
+        </h1>
+        <hr>
+        <center>
+            <header>
+                <form method="POST" action="/search">
+                    <input type="text" id="search" name="search" class="search" placeholder="search">
+                    <input type="submit" name="submit_button" id="submit_button" class="btn btn-primary" value="submit"
+                        , style="background-color:blueviolet">
+                </form>
+            </header>
+            <hr>
+            <a href="/input" class="btn btn-primary">Input Data</a>
+            <a href="/" class="btn btn-primary">Block View</a>
+        </center>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>User Image</th>
+                        <th>User ID</th>
+                        <th>User Name</th>
+                        <th>Gender</th>
+                        <th></th>
+                    </tr>
+                    <% data.forEach(function(user_data){ %>
+                        <tr style=" background-color:cadetblue;">
+                            <td>
+                                <img src="/images/<%= user_data.image %>" alt="<%= user_data.image %>"
+                                    style="height: 20%; width: 20%;">
+                            </td>
+                            <td>
+                                <%= user_data.id %>
+                            </td>
+                            <td>
+                                <%= user_data.name %>
+                            </td>
+                            <td>
+                                <%= user_data.gender %>
+                            </td>
+                            <td>
+                                <a href="/edit/<%= user_data.id %>" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="/delete/<%= user_data.id %>" class="btn btn-primary btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </table>
+            </div>
+        </div>
+        <% if(title=='Movies' ) { %>
+            <div class="clearfix">
+                <div class="hint-text">
+                    Showing <b>
+                        <%= movies.length%>
+                    </b> out of
+                    <b>
+                        <%= movieCount%>
+                    </b> Movies
+                </div>
+                <div>
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item <%=(page==1)?`disabled`:``%>">
+                                <a class="page-link" href="/?page=<%=(page==1)?`1`:`${page-1}`%>"
+                                    tabindex="-1">Previous</a>
+                            </li>
+                            <% for(let pageCount=1; pageCount<=totalPages; pageCount++){ %>
+                                <%if(pageCount==page) {%>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">
+                                            <%= pageCount%><span class="sr-only">(current)</span>
+                                        </a>
+                                    </li>
+                                    <%}else{%>
+                                        <li class="page-item"><a class="page-link" href="/?page=<%=pageCount%>">
+                                                <%= pageCount%>
+                                            </a></li>
+                                        <%} }%>
+                                            <li class="page-item <%=(page==totalPages)?`disabled`:``%>">
+                                                <a class="page-link"
+                                                    href="/?page=<%=(page==totalPages)?`totalPages`:`${Number(page)+1}`%>">Next</a>
+                                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <% } %>
+    </div>
+</body>
+
+</html>

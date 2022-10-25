@@ -22,7 +22,7 @@
             <div class="card-header">User Data Form</div>
             <div class="card-body">
                 <!-- form -->
-                <form method="POST" action="/inputData">
+                <form method="POST" action="/inputData" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label>Gender</label>
-                                <select name="gender" id="gender" class="form-control">
+                                <select name="gender" id="gender" class="form-control" enctype="multipart/form-data">
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
@@ -49,8 +49,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label>Image Path</label>
-                                <input type="text" name="image" id="image" class="form-control" />
+                                <label>Image File</label>
+                                <input type="file" name="imageFile" id="imageFile" class="form-control" />
                             </div>
                         </div>
                     </div>

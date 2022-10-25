@@ -54,8 +54,18 @@
     <h1> Users Detail </h1>
     <hr>
     <center>
+        <header>
+            <form method="POST" action="/search">
+                <input type="text" id="search" name="search" class="search" placeholder="search">
+                <input type="submit" name="submit_button" id="submit_button" class="btn btn-primary" value="submit" ,
+                    style="background-color:blueviolet">
+            </form>
+        </header>
+        <br>
         <a href="/input" class="btn btn-primary">Input Data</a>
+        <a href="/listview" class="btn btn-primary">List View</a>
     </center>
+
     <div class="flexbox">
         <% data.forEach(function(user_data){ %>
             <div class="card">
@@ -76,9 +86,47 @@
                     <a href="/edit/<%= user_data.id %>" class="btn btn-primary btn-sm">Edit</a>
                     <a href="/delete/<%= user_data.id %>" class="btn btn-primary btn-sm">Delete</a>
                 </div>
+
             </div>
             <% }); %>
     </div>
+    <% if(title=='Movies' ) { %>
+        <div class="clearfix">
+            <div class="hint-text">
+                Showing <b>
+                    <%= movies.length%>
+                </b> out of
+                <b>
+                    <%= movieCount%>
+                </b> Movies
+            </div>
+            <div>
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item <%=(page==1)?`disabled`:``%>">
+                            <a class="page-link" href="/?page=<%=(page==1)?`1`:`${page-1}`%>" tabindex="-1">Previous</a>
+                        </li>
+                        <% for(let pageCount=1; pageCount<=totalPages; pageCount++){ %>
+                            <%if(pageCount==page) {%>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">
+                                        <%= pageCount%><span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <%}else{%>
+                                    <li class="page-item"><a class="page-link" href="/?page=<%=pageCount%>">
+                                            <%= pageCount%>
+                                        </a></li>
+                                    <%} }%>
+                                        <li class="page-item <%=(page==totalPages)?`disabled`:``%>">
+                                            <a class="page-link"
+                                                href="/?page=<%=(page==totalPages)?`totalPages`:`${Number(page)+1}`%>">Next</a>
+                                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <% } %>
 </body>
 
 </html>
