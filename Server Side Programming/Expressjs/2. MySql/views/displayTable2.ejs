@@ -28,10 +28,31 @@
                         , style="background-color:blueviolet">
                 </form>
             </header>
-            <hr>
+            <br>
             <a href="/input" class="btn btn-primary">Input Data</a>
             <a href="/" class="btn btn-primary">Block View</a>
         </center>
+        <hr>
+        <center>
+            <h4>Filters</h4>
+            <a href="/Asclist" class="btn btn-primary">Ascending</a>
+            <a href="/Deslist" class="btn btn-primary">Descending</a>
+            <a href="/1to10list" class="btn btn-primary">1 to 10</a>
+            <a href="/11to20list" class="btn btn-primary">11 to 20</a>
+            <br><br>
+            <form method="POST" action="/gender">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" style="width:100px"
+                    name="gender">
+                    <option selected>Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <br>
+                <input type="submit" name="submit_button" id="submit_button" class="btn btn-primary" value="Filter" ,
+                    style="background-color:blueviolet">
+            </form>
+        </center>
+        <hr>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -91,7 +112,7 @@
                                         </a>
                                     </li>
                                     <%}else{%>
-                                        <li class="page-item"><a class="page-link" href="/?page=<%=pageCount%>">
+                                        <li class="page-item"><a class="page-link" href="/listview?page=<%=pageCount%>">
                                                 <%= pageCount%>
                                             </a></li>
                                         <%} }%>

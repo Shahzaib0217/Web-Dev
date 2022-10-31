@@ -1,3 +1,4 @@
+const { query } = require("express");
 const express = require("express")
 const mysql = require("mysql");
 //--------------------------------------
@@ -19,7 +20,7 @@ con.connect((error) => {
 })
 //--------------------------------------
 // Display Views
-exports.Display = (req, res, displayFile) => {
+exports.Display = (req, res, displayFile, pquery, pview) => {
     let CountQuery = `SELECT COUNT(*) FROM users`;
     con.query(CountQuery, (err, totalMovies, fields) => {
         let movieCount = totalMovies[0]["COUNT(*)"];
@@ -28,8 +29,9 @@ exports.Display = (req, res, displayFile) => {
         let startLimit = (page - 1) * moviesPerPage;
         let totalPages = Math.ceil(movieCount / moviesPerPage);
 
-        con.query(`SELECT * FROM users 
-        LIMIT ${startLimit}, ${moviesPerPage}`, (error, user_data) => {
+        fquery = `${pquery} LIMIT ${startLimit}, ${moviesPerPage}`
+
+        con.query(fquery, (error, user_data) => {
             if (error) {
                 throw error;
             }
@@ -42,6 +44,7 @@ exports.Display = (req, res, displayFile) => {
                     page,
                     totalPages,
                     moviesPerPage,
+                    view: pview,
                 })
             }
         })
@@ -103,13 +106,9 @@ exports.Delete = (request, response) => {
 }
 //--------------------------------------
 exports.Edit = (request, response) => {
-
     var id = request.params.id;
-
     var query = `SELECT * FROM users WHERE id = "${id}"`;
-
     con.query(query, function (error, data) {
-
         response.render('updateTable', { userData: data[0] });
     });
 }
@@ -141,6 +140,7 @@ exports.edited = (request, response) => {
 
 }
 //--------------------------------------
+// pagination is not required so didnot use Display()
 exports.search = (request, response, next) => {
 
     var id = request.body.search;
@@ -159,4 +159,10 @@ exports.search = (request, response, next) => {
         }
 
     });
+}
+exports.Gender = (request, response, file) => {
+    var gender = request.body.gender;
+    console.log(gender);
+    var query = `SELECT * FROM users WHERE gender = "${gender}"`;
+    this.Display(request, response, file, query)
 }

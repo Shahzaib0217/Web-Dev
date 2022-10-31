@@ -19,7 +19,7 @@ app.use("/", userRoutes);
 
 const port = 3300;
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`App listening on port ${port}`);
 });
 
 
@@ -66,9 +66,3 @@ app.listen(port, () => {
 // //--------------------------------------
 // app.get("/print", printusers)
 // //--------------------------------------
-// app.get("/gender", (req, res) => {
-//     const query = "Select * from users where gender=male"
-//     con.query(query, (error, data) => {
-
-//     })
-// })
