@@ -1,12 +1,12 @@
 const express = require("express")
 const router = express.Router()
 //--------------------------------------
-// Sign Up
+// Sign Up or Registration
 router.get("/signup", (req, res) => {
-    res.render("signup");
+    res.render("signup"); // opens ejs file
 })
 router.post("/signup", (req, res) => {
-    const id = req.body.id;
+    const id = req.body.id; // id is name of input tag
     const name = req.body.name;
     const password = req.body.password;
 
@@ -14,8 +14,12 @@ router.post("/signup", (req, res) => {
     VALUES ("${id}", "${name}", "${password}")`;
 
     con.query(query, function (err, result) {
-        if (err) throw err;
-        res.redirect("/signin");
+        if (err) {
+            throw err;
+        }
+        else {
+            res.redirect("/signin"); //change routes
+        }
     })
 })
 //--------------------------------------

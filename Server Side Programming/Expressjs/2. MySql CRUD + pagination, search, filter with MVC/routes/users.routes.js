@@ -14,8 +14,10 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 //--------------------------------------
 // Fetching data from table and rendering page views
-router.get("/", (req, res) => { users.Display(req, res, 'displayTable', 'Select * from users') })
-router.get("/listview", (req, res) => { users.Display(req, res, 'displayTable2', 'Select * from users') })
+router.get("/", (req, res) => {
+    users.Display(req, res, 'displayTable', 'Select * from users')
+})
+router.get("/listview", (req, res) => { users.Display(req, res, 'displayTable2', 'Select * from users', 'listview') })
 //--------------------------------------
 //Input Data Routes
 router.get("/input", (req, res,) => {
