@@ -17,15 +17,16 @@ const getWeather = (cityName) => {
     //setting up request using AJAX
     let xhr = new XMLHttpRequest();
     //open connection
-    xhr.open("GET", API);
+    xhr.open("GET", API);  // (method type, data kider sy arha ,true/false) true=async (asyc means this request will be called in the background.. baki sb chlta rhy ga)
     // for JSON data
-    xhr.responseType = "json";
+    xhr.responseType = "json"; // cuz API is sending data in json type
 
     //action when data is returned (ready state is Done(4) or status 200)
+    // when response is ready
     xhr.onload = function () {
         if (this.status == 200) {
             console.log(API);
-            const data = this.response;
+            const data = this.response; // data from api
             let inner_html = `
             <p>City: ${data.name}</p>
             <p>Temprature: ${data.main.temp}</p>
@@ -41,6 +42,7 @@ const getWeather = (cityName) => {
             alert("Unable to Load Data");
         }
     }
-    //send data
+    //send data request
+    // we can pass data from here in post request
     xhr.send();
 }

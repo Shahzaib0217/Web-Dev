@@ -6,7 +6,9 @@ const users = require("../controllers/users.controller");
 // multer file upload
 // returning storage engine that can upload files
 var storage = multer.diskStorage({
-    destination: function (req, file, callback) { callback(null, './public/images') }, // err,dest
+    destination: function (req, file, callback) {
+        callback(null, './public/images')
+    }, // err,dest
     filename: function (req, file, callback) {
         callback(null, file.originalname)
     }

@@ -12,7 +12,7 @@ const con = mysql.createConnection({
 
 con.connect((error) => {
     if (error) {
-        console.warn('error' + JSON.stringify(err, undefined, 2))
+        console.warn('error' + JSON.stringify(error, undefined, 2))
     }
     else {
         console.warn('Database connected')
@@ -25,8 +25,8 @@ exports.Display = (req, res, displayFile, pquery, pview) => {
     con.query(CountQuery, (err, totalMovies, fields) => {
         let movieCount = totalMovies[0]["COUNT(*)"];
         let page = req.query.page ? req.query.page : 1;
-        let moviesPerPage = req.query.moviesPerPage ? req.query.moviesPerPage : 4;
-        let startLimit = (page - 1) * moviesPerPage;
+        let moviesPerPage = req.query.moviesPerPage ? req.query.moviesPerPage : 4;  // ?
+        let startLimit = (page - 1) * moviesPerPage; // 2 minus 1 * 4
         let totalPages = Math.ceil(movieCount / moviesPerPage);
 
         fquery = `${pquery} LIMIT ${startLimit}, ${moviesPerPage}`
@@ -162,7 +162,7 @@ exports.search = (request, response, next) => {
 }
 exports.Gender = (request, response, file) => {
     var gender = request.body.gender;
-    console.log(gender);
+    // console.log(gender);
     var query = `SELECT * FROM users WHERE gender = "${gender}"`;
     this.Display(request, response, file, query)
 }
