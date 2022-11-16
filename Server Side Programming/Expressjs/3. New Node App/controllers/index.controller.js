@@ -15,6 +15,7 @@ exports.signin = (req, res) => {
                 if (data.length > 0) {
                     if (data[0].userPassword == password) {
                         req.session.userid = data[0].userID;
+                        req.session.userEmail = data[0].userEmail;
                         res.redirect("/");
                     }
                     else {
