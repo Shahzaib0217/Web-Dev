@@ -1,21 +1,27 @@
 var express = require('express');
-const session = require('express-session');
 var router = express.Router();
 const index = require("../controllers/index.controller")
 const pdf = require("../controllers/pdf.controller")
+const { Auth, noAuth, Verified, notVerified, } = require("../middlewares/authCheck.middleware");
 
 /* GET home page. */
 router.get('/', (req, res) => { res.render('home', { session: req.session }) });
-// Login
+// Signin
 router.get('/signin', (req, res) => { res.render('signin', { session: req.session, response: res }); });
 router.post('/signin', (req, res) => { index.signin(req, res) });
 router.get('/logout', (request, response) => {
     request.session.destroy();
     response.redirect("/");
 });
-// Register
-router.get('/signup', (req, res) => { res.render('signup') });
+// Signup
+router.get('/signup', noAuth, (req, res) => { res.render('signup') });
 router.post('/signup', (req, res) => { index.signup(req, res) });
+//[Auth, notVerified],
+router.get("/verifyCode", (req, res) => index.verifyCode(req, res));
+router.post("/verifyCode", (req, res) => index.verifyInsertedCode(req, res));
+//Forget password
+router.get('/forgetPassword', noAuth, (req, res) => { res.render('forgetPassword') });
+router.post('/forgetPassword', (req, res) => { index.forgetPassword(req, res) });
 // User View
 
 // Admin View

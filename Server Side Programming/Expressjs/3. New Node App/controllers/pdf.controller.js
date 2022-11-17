@@ -1,8 +1,6 @@
 var pdf = require('html-pdf');
 var options = { format: 'Letter' };
-var fs = require('fs');
 const email = require('./email.controller');
-const session = require('express-session');
 
 exports.convertpdf = (req, res, err, html) => {
     pdf.create(html, options).toFile('./public/uploads/CustomTour.pdf', function (err, result) {
@@ -11,7 +9,7 @@ exports.convertpdf = (req, res, err, html) => {
         // Sending Email
         email.sendMail({
             from: "baydaartravels1@gmail.com", // sender address
-            to: req.session.userEmail, // list of receivers
+            to: req.session.userEmail, // can also be a list of receivers
             subject: "Hello ✔ user", // Subject line
             text: "PDF file of your custom made order", // plain text body
             attachments: [
