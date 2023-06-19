@@ -3,8 +3,7 @@ const router = express.Router()
 const multer = require('multer');
 const users = require("../controllers/users.controller");
 //--------------------------------------
-// multer file upload
-// returning storage engine that can upload files
+// multer storage engine
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './public/images')
